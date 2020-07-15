@@ -189,6 +189,16 @@ CAIRO_ENABLE_FUNCTIONS(xcb_shm, XCB/SHM, auto, [
 
 dnl ===========================================================================
 
+CAIRO_ENABLE_SURFACE_BACKEND(minigui, MiniGUI, auto, [
+  minigui_REQUIRES="minigui >= 4.0.4"
+  PKG_CHECK_MODULES(minigui, $minigui_REQUIRES, ,
+            [minigui_REQUIRES=""
+             use_minigui="no (requires MiniGUI development library version 4.0.4 or later )"
+             ])
+])
+
+dnl ===========================================================================
+
 CAIRO_ENABLE_SURFACE_BACKEND(qt, Qt, no, [
   qt_REQUIRES="QtGui >= 4.4.0"
   PKG_CHECK_MODULES(qt, $qt_REQUIRES, ,
@@ -278,7 +288,7 @@ CAIRO_ENABLE_SURFACE_BACKEND(beos, BeOS/Zeta, no, [
 
 dnl ===========================================================================
 
-CAIRO_ENABLE_SURFACE_BACKEND(drm, DRM, no, [
+CAIRO_ENABLE_SURFACE_BACKEND(drm, DRM, yes, [
   drm_REQUIRES="libudev >= 136, libdrm >= 2.4"
   PKG_CHECK_MODULES(drm, $drm_REQUIRES, ,
    [use_drm="no (requires $drm_REQUIRES, udev is available from git://git.kernel.org/pub/scm/linux/hotplug/udev.git)"])
@@ -872,6 +882,11 @@ dnl ===========================================================================
 # We use GTK+ for some utility/debugging tools
 PKG_CHECK_MODULES(gtk, "gtk+-2.0",have_gtk=yes, have_gtk=no)
 AM_CONDITIONAL(HAVE_GTK, test "x$have_gtk" = "xyes")
+
+dnl ===========================================================================
+if test "$ac_cv_prog_gcc" = "yes"; then
+    CFLAGS="$CFLAGS -Wall -fmax-errors=9"
+fi
 
 AC_CONFIG_FILES([
 Makefile

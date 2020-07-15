@@ -269,8 +269,8 @@ _create_memdc (cairo_format_t   format,
         break;
 
     case CAIRO_FORMAT_RGB30:
-    case CAIRO_FORMAT_RGB96F:
-    case CAIRO_FORMAT_RGBA128F:
+//    case CAIRO_FORMAT_RGB96F:
+//    case CAIRO_FORMAT_RGBA128F:
     case CAIRO_FORMAT_A1:
     case CAIRO_FORMAT_INVALID:
         return HDC_SCREEN;
@@ -618,13 +618,16 @@ _cairo_minigui_surface_get_extents (void                    *abstract_surface,
 }
 
 static cairo_status_t
-_cairo_minigui_surface_flush (void *abstract_surface, unsigned flags)
+// it is for cairo 1.17
+//_cairo_minigui_surface_flush (void *abstract_surface, unsigned flags)
+_cairo_minigui_surface_flush (void *abstract_surface)
 {
     cairo_minigui_surface_t *surface = abstract_surface;
     cairo_status_t status = CAIRO_STATUS_SUCCESS;
 
-    if (flags)
-        return CAIRO_STATUS_SUCCESS;
+// it is for cairo 1.17
+//    if (flags)
+//        return CAIRO_STATUS_SUCCESS;
 
     TRACE ((stderr, "%s (surface=%d)\n",
         __func__, surface->base.unique_id));
@@ -854,14 +857,14 @@ cairo_minigui_surface_create (cairo_device_t *device, HDC hdc)
 
     if (hdc == HDC_INVALID) {
         return _cairo_surface_create_in_error (
-                        _cairo_error (CAIRO_STATUS_INVALID_ARGUMENTS));
+                        _cairo_error (CAIRO_STATUS_SURFACE_TYPE_MISMATCH));
     }
 
     format = _cairo_format_from_dc (hdc);
     switch (format) {
     case CAIRO_FORMAT_RGB30:
-    case CAIRO_FORMAT_RGB96F:
-    case CAIRO_FORMAT_RGBA128F:
+//    case CAIRO_FORMAT_RGB96F:
+//    case CAIRO_FORMAT_RGBA128F:
     case CAIRO_FORMAT_A1:
     case CAIRO_FORMAT_INVALID:
     default:
@@ -885,9 +888,12 @@ cairo_minigui_surface_create (cairo_device_t *device, HDC hdc)
             DrmSurfaceInfo info;
             if (drmGetSurfaceInfo (vh, hdc, &info)) {
                 cairo_surface_t* drm_surface = NULL;
-                drm_surface = cairo_drm_surface_create_for_handle (device,
-                        info.handle, info.size,
-                        format, info.width, info.height, info.pitch);
+// this for cairo version 1.17
+//                drm_surface = cairo_drm_surface_create_for_handle (device,
+//                        info.handle, info.size,
+//                        format, info.width, info.height, info.pitch);
+                drm_surface = cairo_drm_surface_create (device,
+                        format, info.width, info.height);
 
                 if (cairo_surface_get_type (drm_surface) == CAIRO_SURFACE_TYPE_DRM) {
                     cairo_surface_set_user_data (drm_surface, &_dc_key, (void*)hdc, NULL);
@@ -945,9 +951,12 @@ cairo_minigui_surface_create_with_memdc (cairo_device_t * device,
             DrmSurfaceInfo info;
             if (drmGetSurfaceInfo (vh, memdc, &info)) {
                 cairo_surface_t* drm_surface = NULL;
-                drm_surface = cairo_drm_surface_create_for_handle (device,
-                        info.handle, info.size,
-                        format, info.width, info.height, info.pitch);
+// this for cairo version 1.17
+//                drm_surface = cairo_drm_surface_create_for_handle (device,
+//                        info.handle, info.size,
+//                        format, info.width, info.height, info.pitch);
+                drm_surface = cairo_drm_surface_create (device,
+                        format, info.width, info.height);
 
                 if (cairo_surface_get_type (drm_surface) == CAIRO_SURFACE_TYPE_DRM) {
                     cairo_surface_set_user_data (drm_surface, &_dc_key, (void*)memdc, _destroy_memdc);
