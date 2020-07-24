@@ -131,6 +131,10 @@ Supported, "platform" surface backends
 	-----------
 	XCB			https://xcb.freedesktop.org
 
+	MiniGUI backend
+	-----------
+	MiniGUI		>= 4.0.4
+
 Font backends (required to have at least one)
 ---------------------------------------------
 	freetype font backend
