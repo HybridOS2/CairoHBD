@@ -4,7 +4,7 @@ libdir=@libdir@
 includedir=@includedir@
 
 Name: @FEATURE_PC@
-Description: @FEATURE_NAME@ for cairo graphics library
+Description: @FEATURE_NAME@ for hicairo graphics library
 Version: @VERSION@
 
 Requires: @FEATURE_BASE@ @FEATURE_REQUIRES@

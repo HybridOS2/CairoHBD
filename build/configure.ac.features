@@ -37,7 +37,7 @@ dnl
 dnl Define cr_feature_pc and friends ala other cr_feature_* macros
 dnl
 m4_define([cr_pc_modname],
-	[[cairo-]m4_translit([$1],_,-)])dnl
+	[[hicairo-]m4_translit([$1],_,-)])dnl
 m4_define([cr_feature_pc],
 	[cr_pc_modname(cr_feature)[.pc]])dnl
 m4_define([cr_feature_uninstalled_pc],
@@ -137,8 +137,8 @@ dnl Generate .pc files
 dnl
 
 dnl All .pc files are generated automatically except for this one
-AC_CONFIG_FILES([src/cairo.pc])dnl
-AC_CONFIG_FILES([cairo-uninstalled.pc:src/cairo-uninstalled.pc.in])dnl
+AC_CONFIG_FILES([src/hicairo.pc])dnl
+AC_CONFIG_FILES([hicairo-uninstalled.pc:src/hicairo-uninstalled.pc.in])dnl
 
 dnl pkg-config requires, non-pkgconfig cflags and libs, and total cflags and libs
 CAIRO_FEATURE_VARS_REGISTER([BASE],[cairo])dnl
@@ -192,7 +192,7 @@ CAIRO_FEATURE_HOOK_REGISTER(yes,!always,!,
 		[$1],
 		cr_feature_name,
 		[src/]cr_feature_pc,
-		[src/cairo-features.pc.in]
+		[src/hicairo-features.pc.in]
 	)dnl
 ])dnl
 
@@ -203,20 +203,20 @@ CAIRO_FEATURE_HOOK_REGISTER(yes,!always,!,
 		[$1],
 		cr_feature_name,
 		cr_feature_uninstalled_pc,
-		[src/cairo-features-uninstalled.pc.in]
+		[src/hicairo-features-uninstalled.pc.in]
 	)dnl
 ])dnl
 
 
 dnl Collect list of .pc files for all non-builtin public features
 CAIRO_MAKEFILE_ACCUMULATE(cairo,
-[all_$1_pkgconf = cairo.pc])dnl
+[all_$1_pkgconf = hicairo.pc])dnl
 CAIRO_MAKEFILE_ACCUMULATE_FEATURE(cairo,*,!always,!,
 [all_$1_pkgconf += cr_feature_pc])dnl
 
 dnl Collect list of .pc files for enabled non-builtin public features
 CAIRO_MAKEFILE_ACCUMULATE(cairo,
-[enabled_$1_pkgconf = cairo.pc])dnl
+[enabled_$1_pkgconf = hicairo.pc])dnl
 CAIRO_MAKEFILE_ACCUMULATE_FEATURE(cairo,yes,!always,!,
 [enabled_$1_pkgconf += cr_feature_pc])dnl
 
