@@ -41,33 +41,33 @@ if CAIRO_HAS_INTERPRETER
 EXTRA_PROGRAMS += trace-to-xml xml-to-trace
 endif
 
-trace_to_xml_LDADD = cairo-script/libcairo-script-interpreter.la $(top_builddir)/src/libcairo.la $(CAIRO_LDADD)
+trace_to_xml_LDADD = cairo-script/libhicairo-script-interpreter.la $(top_builddir)/src/libhicairo.la $(CAIRO_LDADD)
 
 xml_to_trace_LDADD = -lexpat
 
 show_traps_SOURCES = show-traps.c
 show_traps_CFLAGS = $(gtk_CFLAGS)
-#show_traps_LDADD = $(top_builddir)/src/libcairo.la $(gtk_LIBS)
+#show_traps_LDADD = $(top_builddir)/src/libhicairo.la $(gtk_LIBS)
 show_traps_LDADD = $(gtk_LIBS)
 
 show_polygon_SOURCES = show-polygon.c
 show_polygon_CFLAGS = $(gtk_CFLAGS)
-#show_polygon_LDADD = $(top_builddir)/src/libcairo.la $(gtk_LIBS)
+#show_polygon_LDADD = $(top_builddir)/src/libhicairo.la $(gtk_LIBS)
 show_polygon_LDADD = $(gtk_LIBS)
 
 show_edges_SOURCES = show-edges.c
 show_edges_CFLAGS = $(gtk_CFLAGS)
-#show_edges_LDADD = $(top_builddir)/src/libcairo.la $(gtk_LIBS)
+#show_edges_LDADD = $(top_builddir)/src/libhicairo.la $(gtk_LIBS)
 show_edges_LDADD = $(gtk_LIBS)
 
 show_contour_SOURCES = show-contour.c
 show_contour_CFLAGS = $(gtk_CFLAGS)
-#show_contour_LDADD = $(top_builddir)/src/libcairo.la $(gtk_LIBS)
+#show_contour_LDADD = $(top_builddir)/src/libhicairo.la $(gtk_LIBS)
 show_contour_LDADD = $(gtk_LIBS)
 
 show_events_SOURCES = show-events.c
 show_events_CFLAGS = $(gtk_CFLAGS)
-#show_events_LDADD = $(top_builddir)/src/libcairo.la $(gtk_LIBS)
+#show_events_LDADD = $(top_builddir)/src/libhicairo.la $(gtk_LIBS)
 show_events_LDADD = $(gtk_LIBS)
 
 util: malloc-stats.so backtrace-symbols.so
@@ -91,7 +91,7 @@ backtrace_symbols_la_LIBADD = -lbfd -liberty
 if HAVE_GTK
 EXTRA_PROGRAMS += font-view
 font_view_CFLAGS = $(gtk_CFLAGS)
-font_view_LDADD = ../src/libcairo.la $(gtk_LIBS)
+font_view_LDADD = ../src/libhicairo.la $(gtk_LIBS)
 endif
 
 EXTRA_DIST += \

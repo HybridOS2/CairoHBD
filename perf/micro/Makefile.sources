@@ -1,4 +1,4 @@
-libcairo_perf_micro_sources = \
+libhicairo_perf_micro_sources = \
 	cairo-perf-cover.c	\
 	box-outline.c		\
 	composite-checker.c	\
@@ -44,7 +44,7 @@ libcairo_perf_micro_sources = \
 	fill-clip.c		\
 	$(NULL)
 
-libcairo_perf_micro_headers = \
+libhicairo_perf_micro_headers = \
 	mosaic.h		\
 	world-map.h		\
 	zrusin-another.h	\

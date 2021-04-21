@@ -21,23 +21,23 @@ cairo_sphinx_CPPFLAGS = $(AM_CPPFLAGS) -DLIBDIR="\"$(cairolibdir)\""
 cairo_sphinx_CFLAGS = $(CAIRO_CFLAGS) $(real_pthread_CFLAGS)  $(glib_CFLAGS)
 cairo_sphinx_LDADD = \
 	$(real_pthread_LIBS)					\
-        $(top_builddir)/util/cairo-script/libcairo-script-interpreter.la \
-        $(top_builddir)/boilerplate/libcairoboilerplate.la	\
-	$(top_builddir)/src/libcairo.la 			\
+        $(top_builddir)/util/cairo-script/libhicairo-script-interpreter.la \
+        $(top_builddir)/boilerplate/libhicairoboilerplate.la	\
+	$(top_builddir)/src/libhicairo.la 			\
 	$(glib_LIBS) 						\
 	$(CAIRO_LDADD)						\
 	$(shm_LIBS)
 cairo_sphinx_DEPENDENCIES = \
-        $(top_builddir)/util/cairo-script/libcairo-script-interpreter.la \
-        $(top_builddir)/boilerplate/libcairoboilerplate.la	\
-	$(top_builddir)/src/libcairo.la
+        $(top_builddir)/util/cairo-script/libhicairo-script-interpreter.la \
+        $(top_builddir)/boilerplate/libhicairoboilerplate.la	\
+	$(top_builddir)/src/libhicairo.la
 
 # Install rules to rebuild the libraries and add explicit dependencies
-$(top_builddir)/boilerplate/libcairoboilerplate.la: $(top_builddir)/src/libcairo.la
-	cd $(top_builddir)/boilerplate && $(MAKE) $(AM_MAKEFLAGS) libcairoboilerplate.la
+$(top_builddir)/boilerplate/libhicairoboilerplate.la: $(top_builddir)/src/libhicairo.la
+	cd $(top_builddir)/boilerplate && $(MAKE) $(AM_MAKEFLAGS) libhicairoboilerplate.la
 
-$(top_builddir)/src/libcairo.la:
-	cd $(top_builddir)/src && $(MAKE) $(AM_MAKEFLAGS) libcairo.la
+$(top_builddir)/src/libhicairo.la:
+	cd $(top_builddir)/src && $(MAKE) $(AM_MAKEFLAGS) libhicairo.la
 
-$(top_builddir)/util/cairo-script/libcairo-script-interpreter.la: $(top_builddir)/src/libcairo.la
-	cd $(top_builddir)/util/cairo-script && $(MAKE) $(AM_MAKEFLAGS) libcairo-script-interpreter.la
+$(top_builddir)/util/cairo-script/libhicairo-script-interpreter.la: $(top_builddir)/src/libhicairo.la
+	cd $(top_builddir)/util/cairo-script && $(MAKE) $(AM_MAKEFLAGS) libhicairo-script-interpreter.la

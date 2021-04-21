@@ -2,10 +2,10 @@ include $(top_srcdir)/build/Makefile.am.common
 
 include $(top_srcdir)/perf/micro/Makefile.sources
 
-noinst_LTLIBRARIES = libcairo-perf-micro.la
-libcairo_perf_micro_la_SOURCES = \
-	$(libcairo_perf_micro_sources)	\
-	$(libcairo_perf_micro_headers)
+noinst_LTLIBRARIES = libhicairo-perf-micro.la
+libhicairo_perf_micro_la_SOURCES = \
+	$(libhicairo_perf_micro_sources)	\
+	$(libhicairo_perf_micro_headers)
 
 AM_CPPFLAGS =				\
 	-I$(srcdir)			\

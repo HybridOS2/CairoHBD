@@ -39,7 +39,7 @@ static void *_dlhandle = RTLD_NEXT;
     if (name##_real == NULL) { \
 	name##_real = dlsym (_dlhandle, #name); \
 	if (name##_real == NULL && _dlhandle == RTLD_NEXT) { \
-	    _dlhandle = dlopen ("libcairo.so", RTLD_LAZY); \
+	    _dlhandle = dlopen ("libhicairo.so", RTLD_LAZY); \
 	    name##_real = dlsym (_dlhandle, #name); \
 	    assert (name##_real != NULL); \
 	} \

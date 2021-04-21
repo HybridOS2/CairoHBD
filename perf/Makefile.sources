@@ -1,12 +1,12 @@
-libcairoperf_sources = \
+libhicairoperf_sources = \
 	cairo-perf.c		\
 	cairo-perf-report.c	\
 	cairo-stats.c		\
 	$(NULL)
 
-libcairoperf_external_sources = ../src/cairo-time.c
+libhicairoperf_external_sources = ../src/cairo-time.c
 
-libcairoperf_headers = \
+libhicairoperf_headers = \
 	cairo-perf.h   \
 	cairo-stats.h  \
 	$(NULL)

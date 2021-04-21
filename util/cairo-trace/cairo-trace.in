@@ -90,7 +90,7 @@ export CAIRO_TRACE_PROG_NAME
 
 if test "x$CAIRO_TRACE_SO" = "x"; then
     CAIRO_TRACE_SO=""
-    for lib in @libdir@/cairo/libcairo-trace.@SHLIB_EXT@ @libdir@/cairo/libcairo-trace.@SHLIB_EXT@* @libdir@/cairo/libcairo-trace.*.@SHLIB_EXT@ ; do
+    for lib in @libdir@/cairo/libhicairo-trace.@SHLIB_EXT@ @libdir@/cairo/libhicairo-trace.@SHLIB_EXT@* @libdir@/cairo/libhicairo-trace.*.@SHLIB_EXT@ ; do
 	if test -h "$lib" -o -f "$lib"; then
 	    CAIRO_TRACE_SO="$lib"
 	    break

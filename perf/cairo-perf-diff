@@ -175,7 +175,7 @@ build() {
     done
 
     make || (rm config.cache && make)
-    (cd boilerplate && make libcairoboilerplate.la)
+    (cd boilerplate && make libhicairoboilerplate.la)
 
     cd perf
     make ${benchmark}

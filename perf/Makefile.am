@@ -32,48 +32,48 @@ EXTRA_PROGRAMS += \
 	cairo-perf-graph-files \
 	$(NULL)
 EXTRA_DIST += cairo-perf-diff COPYING
-EXTRA_LTLIBRARIES += libcairoperf.la
+EXTRA_LTLIBRARIES += libhicairoperf.la
 
-LDADD = libcairoperf.la \
-	$(top_builddir)/boilerplate/libcairoboilerplate.la \
-	$(top_builddir)/src/libcairo.la
+LDADD = libhicairoperf.la \
+	$(top_builddir)/boilerplate/libhicairoboilerplate.la \
+	$(top_builddir)/src/libhicairo.la
 
 cairo_perf_micro_SOURCES = $(cairo_perf_micro_sources)
 cairo_perf_micro_LDADD = \
-	$(top_builddir)/perf/micro/libcairo-perf-micro.la \
+	$(top_builddir)/perf/micro/libhicairo-perf-micro.la \
 	$(LDADD)
 cairo_perf_micro_DEPENDENCIES = \
-	$(top_builddir)/perf/micro/libcairo-perf-micro.la \
+	$(top_builddir)/perf/micro/libhicairo-perf-micro.la \
 	$(LDADD)
 
-libcairoperf_la_SOURCES = \
-	$(libcairoperf_sources)	\
-	$(libcairoperf_external_sources) \
-	$(libcairoperf_headers) \
+libhicairoperf_la_SOURCES = \
+	$(libhicairoperf_sources)	\
+	$(libhicairoperf_external_sources) \
+	$(libhicairoperf_headers) \
 	$(NULL)
 
 cairo_analyse_trace_SOURCES = \
 	$(cairo_analyse_trace_sources)	\
 	$(cairo_analyse_trace_external_sources)
 cairo_analyse_trace_LDADD =		\
-	$(top_builddir)/util/cairo-script/libcairo-script-interpreter.la \
-	$(top_builddir)/util/cairo-missing/libcairo-missing.la \
+	$(top_builddir)/util/cairo-script/libhicairo-script-interpreter.la \
+	$(top_builddir)/util/cairo-missing/libhicairo-missing.la \
 	$(LDADD)
 cairo_analyse_trace_DEPENDENCIES = \
-	$(top_builddir)/util/cairo-script/libcairo-script-interpreter.la \
-	$(top_builddir)/util/cairo-missing/libcairo-missing.la \
+	$(top_builddir)/util/cairo-script/libhicairo-script-interpreter.la \
+	$(top_builddir)/util/cairo-missing/libhicairo-missing.la \
 	$(LDADD)
 
 cairo_perf_trace_SOURCES = \
 	$(cairo_perf_trace_sources)	\
 	$(cairo_perf_trace_external_sources)
 cairo_perf_trace_LDADD =		\
-	$(top_builddir)/util/cairo-script/libcairo-script-interpreter.la \
-	$(top_builddir)/util/cairo-missing/libcairo-missing.la \
+	$(top_builddir)/util/cairo-script/libhicairo-script-interpreter.la \
+	$(top_builddir)/util/cairo-missing/libhicairo-missing.la \
 	$(LDADD)
 cairo_perf_trace_DEPENDENCIES = \
-	$(top_builddir)/util/cairo-script/libcairo-script-interpreter.la \
-	$(top_builddir)/util/cairo-missing/libcairo-missing.la \
+	$(top_builddir)/util/cairo-script/libhicairo-script-interpreter.la \
+	$(top_builddir)/util/cairo-missing/libhicairo-missing.la \
 	$(LDADD)
 
 cairo_perf_diff_files_SOURCES =	$(cairo_perf_diff_files_sources)
@@ -88,17 +88,17 @@ cairo_perf_graph_files_CFLAGS = @gtk_CFLAGS@
 cairo_perf_graph_files_LDADD = @gtk_LIBS@ $(LDADD)
 
 # Install rules to rebuild the libraries and add explicit dependencies
-$(top_builddir)/perf/micro/libcairo-perf-micro.la:
-	cd $(top_builddir)/perf/micro && $(MAKE) $(AM_MAKEFLAGS) libcairo-perf-micro.la
+$(top_builddir)/perf/micro/libhicairo-perf-micro.la:
+	cd $(top_builddir)/perf/micro && $(MAKE) $(AM_MAKEFLAGS) libhicairo-perf-micro.la
 
-$(top_builddir)/boilerplate/libcairoboilerplate.la: $(top_builddir)/src/libcairo.la
-	cd $(top_builddir)/boilerplate && $(MAKE) $(AM_MAKEFLAGS) libcairoboilerplate.la
+$(top_builddir)/boilerplate/libhicairoboilerplate.la: $(top_builddir)/src/libhicairo.la
+	cd $(top_builddir)/boilerplate && $(MAKE) $(AM_MAKEFLAGS) libhicairoboilerplate.la
 
-$(top_builddir)/src/libcairo.la:
-	cd $(top_builddir)/src && $(MAKE) $(AM_MAKEFLAGS) libcairo.la
+$(top_builddir)/src/libhicairo.la:
+	cd $(top_builddir)/src && $(MAKE) $(AM_MAKEFLAGS) libhicairo.la
 
-$(top_builddir)/util/cairo-script/libcairo-script-interpreter.la: $(top_builddir)/src/libcairo.la
-	cd $(top_builddir)/util/cairo-script && $(MAKE) $(AM_MAKEFLAGS) libcairo-script-interpreter.la
+$(top_builddir)/util/cairo-script/libhicairo-script-interpreter.la: $(top_builddir)/src/libhicairo.la
+	cd $(top_builddir)/util/cairo-script && $(MAKE) $(AM_MAKEFLAGS) libhicairo-script-interpreter.la
 
 
 # Do a funny transition of CAIRO_TEST_TARGET through TARGETS such that

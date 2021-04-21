@@ -92,13 +92,13 @@ cairo_test_suite_CFLAGS = $(AM_CFLAGS) $(real_pthread_CFLAGS)
 cairo_test_suite_LDADD = 					\
 	$(real_pthread_LIBS)					\
 	$(top_builddir)/test/pdiff/libpdiff.la 			\
-        $(top_builddir)/boilerplate/libcairoboilerplate.la	\
-	$(top_builddir)/src/libcairo.la 			\
+        $(top_builddir)/boilerplate/libhicairoboilerplate.la	\
+	$(top_builddir)/src/libhicairo.la 			\
 	$(CAIRO_LDADD)
 cairo_test_suite_DEPENDENCIES = \
 	$(top_builddir)/test/pdiff/libpdiff.la 			\
-        $(top_builddir)/boilerplate/libcairoboilerplate.la	\
-	$(top_builddir)/src/libcairo.la
+        $(top_builddir)/boilerplate/libhicairoboilerplate.la	\
+	$(top_builddir)/src/libhicairo.la
 if BUILD_ANY2PPM
 cairo_test_suite_DEPENDENCIES += \
 	any2ppm$(EXEEXT)
@@ -114,18 +114,18 @@ cairo_test_trace_CFLAGS = $(AM_CFLAGS) $(real_pthread_CFLAGS)
 cairo_test_trace_LDADD =		\
 	$(real_pthread_LIBS)					\
 	$(top_builddir)/test/pdiff/libpdiff.la 			\
-	$(top_builddir)/util/cairo-script/libcairo-script-interpreter.la \
-        $(top_builddir)/boilerplate/libcairoboilerplate.la	\
-	$(top_builddir)/src/libcairo.la 			\
-	$(top_builddir)/util/cairo-missing/libcairo-missing.la  \
+	$(top_builddir)/util/cairo-script/libhicairo-script-interpreter.la \
+        $(top_builddir)/boilerplate/libhicairoboilerplate.la	\
+	$(top_builddir)/src/libhicairo.la 			\
+	$(top_builddir)/util/cairo-missing/libhicairo-missing.la  \
 	$(CAIRO_LDADD) \
 	$(SHM_LIBS)
 cairo_test_trace_DEPENDENCIES = \
 	$(top_builddir)/test/pdiff/libpdiff.la 			\
-	$(top_builddir)/util/cairo-script/libcairo-script-interpreter.la \
-        $(top_builddir)/boilerplate/libcairoboilerplate.la	\
-	$(top_builddir)/src/libcairo.la                         \
-	$(top_builddir)/util/cairo-missing/libcairo-missing.la  \
+	$(top_builddir)/util/cairo-script/libhicairo-script-interpreter.la \
+        $(top_builddir)/boilerplate/libhicairoboilerplate.la	\
+	$(top_builddir)/src/libhicairo.la                         \
+	$(top_builddir)/util/cairo-missing/libhicairo-missing.la  \
 	$(NULL)
 endif
 
@@ -213,11 +213,11 @@ AM_CPPFLAGS =					\
 	$(CAIRO_CFLAGS)
 AM_LDFLAGS = $(CAIRO_LDFLAGS)
 
-$(top_builddir)/boilerplate/libcairoboilerplate.la: $(top_builddir)/src/libcairo.la
-	cd $(top_builddir)/boilerplate && $(MAKE) $(AM_MAKEFLAGS) libcairoboilerplate.la
+$(top_builddir)/boilerplate/libhicairoboilerplate.la: $(top_builddir)/src/libhicairo.la
+	cd $(top_builddir)/boilerplate && $(MAKE) $(AM_MAKEFLAGS) libhicairoboilerplate.la
 
-$(top_builddir)/src/libcairo.la:
-	cd $(top_builddir)/src && $(MAKE) $(AM_MAKEFLAGS) libcairo.la
+$(top_builddir)/src/libhicairo.la:
+	cd $(top_builddir)/src && $(MAKE) $(AM_MAKEFLAGS) libhicairo.la
 
 $(top_builddir)/test/pdiff/libpdiff.la:
 	cd $(top_builddir)/test/pdiff && $(MAKE) $(AM_MAKEFLAGS) libpdiff.la
@@ -225,8 +225,8 @@ $(top_builddir)/test/pdiff/libpdiff.la:
 $(top_builddir)/test/pdiff/perceptualdiff:
 	cd $(top_builddir)/test/pdiff && $(MAKE) $(AM_MAKEFLAGS) perceptualdiff
 
-$(top_builddir)/util/cairo-script/libcairo-script-interpreter.la: $(top_builddir)/src/libcairo.la
-	cd $(top_builddir)/util/cairo-script && $(MAKE) $(AM_MAKEFLAGS) libcairo-script-interpreter.la
+$(top_builddir)/util/cairo-script/libhicairo-script-interpreter.la: $(top_builddir)/src/libhicairo.la
+	cd $(top_builddir)/util/cairo-script && $(MAKE) $(AM_MAKEFLAGS) libhicairo-script-interpreter.la
 
 EXTRA_PROGRAMS += imagediff png-flatten
 
@@ -236,10 +236,10 @@ imagediff_SOURCES = \
 	buffer-diff.h
 imagediff_LDADD = \
 	$(top_builddir)/test/pdiff/libpdiff.la \
-	$(top_builddir)/src/libcairo.la
+	$(top_builddir)/src/libhicairo.la
 
 png_flatten_SOURCES = png-flatten.c
-png_flatten_LDADD = $(top_builddir)/src/libcairo.la \
+png_flatten_LDADD = $(top_builddir)/src/libhicairo.la \
 		    $(CAIRO_LDADD)
 
 if BUILD_ANY2PPM
@@ -248,8 +248,8 @@ any2ppm_CFLAGS = $(AM_CFLAGS) $(POPPLER_CFLAGS) $(LIBRSVG_CFLAGS) $(LIBSPECTRE_C
 # add LDADD, so poppler/librsvg uses "our" cairo
 any2ppm_LDFLAGS = $(AM_LDFLAGS) $(CAIRO_TEST_UNDEFINED_LDFLAGS)
 any2ppm_LDADD = \
-		$(top_builddir)/util/cairo-script/libcairo-script-interpreter.la \
-		$(top_builddir)/src/libcairo.la \
+		$(top_builddir)/util/cairo-script/libhicairo-script-interpreter.la \
+		$(top_builddir)/src/libhicairo.la \
 		$(CAIRO_LDADD) \
 		$(CAIROBOILERPLATE_LIBS) \
 		$(POPPLER_LIBS) \
@@ -262,7 +262,7 @@ check_PROGRAMS += pdf2png
 pdf2png_CFLAGS = $(AM_CFLAGS) $(POPPLER_CFLAGS)
 # add LDADD, so poppler uses "our" cairo
 pdf2png_LDFLAGS = $(AM_LDFLAGS) $(CAIRO_TEST_UNDEFINED_LDFLAGS)
-pdf2png_LDADD  = $(top_builddir)/src/libcairo.la \
+pdf2png_LDADD  = $(top_builddir)/src/libhicairo.la \
 		 $(CAIRO_LDADD) \
 		 $(POPPLER_LIBS)
 endif
@@ -272,7 +272,7 @@ check_PROGRAMS += svg2png
 svg2png_CFLAGS = $(AM_CFLAGS) $(LIBRSVG_CFLAGS)
 # add LDADD, so librsvg uses "our" cairo
 svg2png_LDFLAGS = $(AM_LDFLAGS) $(CAIRO_TEST_UNDEFINED_LDFLAGS)
-svg2png_LDADD  = $(top_builddir)/src/libcairo.la \
+svg2png_LDADD  = $(top_builddir)/src/libhicairo.la \
 		 $(CAIRO_LDADD) \
 		 $(LIBRSVG_LIBS)
 endif
@@ -282,7 +282,7 @@ check_PROGRAMS += ps2png
 ps2png_CFLAGS = $(AM_CFLAGS) $(LIBSPECTRE_CFLAGS)
 # add LDADD, so ps2png uses "our" cairo
 ps2png_LDFLAGS = $(AM_LDFLAGS) $(CAIRO_TEST_UNDEFINED_LDFLAGS)
-ps2png_LDADD  = $(top_builddir)/src/libcairo.la \
+ps2png_LDADD  = $(top_builddir)/src/libhicairo.la \
 		$(CAIRO_LDADD) \
 		$(LIBSPECTRE_LIBS)
 endif

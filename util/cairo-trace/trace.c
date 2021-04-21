@@ -119,7 +119,7 @@ static void *_dlhandle = RTLD_NEXT;
     if (name##_real == NULL) { \
 	name##_real = (typeof (&name))(dlsym (_dlhandle, #name));	\
 	if (name##_real == NULL && _dlhandle == RTLD_NEXT) { \
-	    _dlhandle = dlopen ("libcairo." SHARED_LIB_EXT, RTLD_LAZY); \
+	    _dlhandle = dlopen ("libhicairo." SHARED_LIB_EXT, RTLD_LAZY); \
 	    name##_real = (typeof (&name))(dlsym (_dlhandle, #name));	\
 	    assert (name##_real != NULL); \
 	} \

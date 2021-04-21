@@ -15,47 +15,47 @@ AM_CPPFLAGS = \
 AM_LDFLAGS = $(CAIRO_LDFLAGS)
 
 if BUILD_CXX
-cxx_boilerplate_lib = libcairoboilerplate_cxx.la
+cxx_boilerplate_lib = libhicairoboilerplate_cxx.la
 else
 cxx_boilerplate_lib =
 endif
 
-EXTRA_LTLIBRARIES += libcairoboilerplate.la $(cxx_boilerplate_lib)
+EXTRA_LTLIBRARIES += libhicairoboilerplate.la $(cxx_boilerplate_lib)
 
 
-libcairoboilerplate_la_SOURCES = \
+libhicairoboilerplate_la_SOURCES = \
 	$(enabled_cairo_boilerplate_headers) \
 	$(enabled_cairo_boilerplate_private) \
 	$(enabled_cairo_boilerplate_sources) \
 	cairo-boilerplate-constructors.c \
 	$(NULL)
-libcairoboilerplate_cxx_la_SOURCES = \
+libhicairoboilerplate_cxx_la_SOURCES = \
 	$(enabled_cairo_boilerplate_cxx_sources) \
 	$(NULL)
-libcairoboilerplate_la_LIBADD = $(top_builddir)/src/libcairo.la \
+libhicairoboilerplate_la_LIBADD = $(top_builddir)/src/libhicairo.la \
 	$(cxx_boilerplate_lib) \
 	$(CAIRO_LIBS) \
 	$(CAIROBOILERPLATE_LIBS) \
 	$(NULL)
-libcairoboilerplate_cxx_la_LIBADD = $(top_builddir)/src/libcairo.la \
+libhicairoboilerplate_cxx_la_LIBADD = $(top_builddir)/src/libhicairo.la \
 	$(CAIRO_LIBS) \
 	$(CAIROBOILERPLATE_LIBS) \
 	$(NULL)
-libcairoboilerplate_la_DEPENDENCIES = \
+libhicairoboilerplate_la_DEPENDENCIES = \
 	$(cxx_boilerplate_lib) \
 	$(NULL)
 
 if CAIRO_HAS_DL
-libcairoboilerplate_la_LIBADD += -ldl
+libhicairoboilerplate_la_LIBADD += -ldl
 endif
 
 if CAIRO_HAS_BEOS_SURFACE
 # BeOS system headers trigger this warning
-libcairoboilerplate_cxx_la_CXXFLAGS = -Wno-multichar
+libhicairoboilerplate_cxx_la_CXXFLAGS = -Wno-multichar
 endif
 
 if CAIRO_HAS_WIN32_SURFACE
-libcairoboilerplate_la_LIBADD += -lwinspool
+libhicairoboilerplate_la_LIBADD += -lwinspool
 endif
 
 cairo-boilerplate-constructors.c: Makefile $(enabled_cairo_boilerplate_sources) $(enabled_cairo_boilerplate_cxx_sources) make-cairo-boilerplate-constructors.sh
@@ -73,4 +73,4 @@ TESTS += check-link$(EXEEXT)
 endif
 
 check_PROGRAMS += check-link
-check_link_LDADD = libcairoboilerplate.la
+check_link_LDADD = libhicairoboilerplate.la

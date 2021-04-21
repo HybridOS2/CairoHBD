@@ -20,7 +20,7 @@ information, (in the opening comment of each file).
 directory of the cairo source distribution. There are other components
 of the cairo source distribution (such as the "test", "util", and "perf")
 that are auxiliary to the library itself. None of the source code in these
-directories contributes to a build of the cairo library itself, (libcairo.so
+directories contributes to a build of the cairo library itself, (libhicairo.so
 or cairo.dll or similar).
 
 These auxiliary components are also free software, but may be under
