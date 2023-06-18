@@ -3,17 +3,16 @@
 ./configure \
     --disable-static \
     --enable-shared \
-    --enable-gtk-doc=yes \
-    --enable-xlib=yes \
+    --enable-gtk-doc=no \
+    --enable-xlib=no \
     --enable-xlib-xrender=no \
     --enable-xcb=no \
     --enable-qt=no \
-    --enable-fc=no \
+    --enable-fc=yes \
     --enable-minigui=yes \
-    --enable-drm=yes \
-    --enable-gl=yes \
+    --enable-gl=no \
     --enable-glesv2=no \
-    --enable-glesv3=yes \
-    --enable-egl=yes \
-    --enable-glx=yes \
+    --enable-glesv3=no \
+    --enable-egl=no \
+    --enable-glx=no \
     --enable-drm=no
